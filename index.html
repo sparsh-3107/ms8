@@ -126,7 +126,12 @@
       animation: fadeIn 1s ease;
       flex-direction: column;
     }
-
+/* Voice Slide Text */
+    .section p {
+      color: inherit;
+      user-select: none;
+    }
+    
     #voiceBtn {
       background: #ff80ab;
       color: white;
@@ -308,6 +313,142 @@
       color: #999;
       user-select: none;
     }
+       canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .heart,
+    .sparkle,
+    .snowflake {
+      position: fixed;
+      bottom: -20px;
+      font-size: 1.5rem;
+      animation: floatEffect 6s linear infinite;
+      pointer-events: none;
+      z-index: 10;
+      user-select: none;
+    }
+    .sparkle {
+      color: #ffd700;
+      animation-duration: 4s;
+    }
+    .snowflake {
+      color: #cceeff;
+      font-size: 1.2rem;
+      animation-duration: 7s;
+    }
+
+    @keyframes floatEffect {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+    .balloon {
+  position: fixed;
+  bottom: -100px;
+  font-size: 2rem;
+  animation: floatUp 10s linear infinite;
+  z-index: 5;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.2);
+    opacity: 0;
+  }
+}
+.shooting-star {
+  position: fixed;
+  top: -10px;
+  width: 2px;
+  height: 80px;
+  background: white;
+  opacity: 0.8;
+  transform: rotate(45deg);
+  z-index: 50;
+  animation: shoot 2s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100vw, 100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+    .polaroid-wall {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .polaroid {
+      background: white;
+      padding: 0.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      width: 150px;
+      transform: rotate(var(--angle));
+      animation: floatPhoto 4s ease-in-out infinite alternate;
+    }
+    .polaroid img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+    .polaroid p {
+      text-align: center;
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    @keyframes floatPhoto {
+      from { transform: rotate(var(--angle)) translateY(0px); }
+      to { transform: rotate(var(--angle)) translateY(-10px); }
+    }
+    
+
   </style>
 </head>
 <body>
@@ -348,17 +489,35 @@
     </div>
 
     <!-- 🖼️ Polaroid Photo Wall -->
-    <div class="section">
-      <p style="font-size: 1.5rem;">🖼️ Our Memories Together</p>
-      <div class="polaroid-wall">
-        <div class="polaroid" style="--angle: -5deg;"><img src="https://picsum.photos/id/1011/300/300" /><p>First Smile</p></div>
-        <div class="polaroid" style="--angle: 3deg;"><img src="https://picsum.photos/id/1025/300/300" /><p>That Look 🥺</p></div>
-        <div class="polaroid" style="--angle: -2deg;"><img src="https://picsum.photos/id/1005/300/300" /><p>Forever Yours</p></div>
-        <div class="polaroid" style="--angle: 4deg;"><img src="https://picsum.photos/id/1012/300/300" /><p>Pure Bliss</p></div>
-        <div class="polaroid" style="--angle: -4deg;"><img src="https://picsum.photos/id/1023/300/300" /><p>My World</p></div>
-        <div class="polaroid" style="--angle: 6deg;"><img src="https://picsum.photos/id/1035/300/300" /><p>My Love</p></div>
+   <div class="section">
+    <p style="font-size: 1.5rem;">🖼️ Our Memories Together</p>
+    <div class="polaroid-wall">
+      <div class="polaroid" style="--angle: -5deg;">
+        <img src="https://picsum.photos/id/1011/300/300" />
+        <p>First Smile</p>
+      </div>
+      <div class="polaroid" style="--angle: 3deg;">
+        <img src="https://picsum.photos/id/1025/300/300" />
+        <p>That Look 🥺</p>
+      </div>
+      <div class="polaroid" style="--angle: -2deg;">
+        <img src="https://picsum.photos/id/1005/300/300" />
+        <p>Forever Yours</p>
+      </div>
+      <div class="polaroid" style="--angle: 4deg;">
+        <img src="https://picsum.photos/id/1012/300/300" />
+        <p>Pure Bliss</p>
+      </div>
+      <div class="polaroid" style="--angle: -4deg;">
+        <img src="https://picsum.photos/id/1023/300/300" />
+        <p>My World</p>
+      </div>
+      <div class="polaroid" style="--angle: 6deg;">
+        <img src="https://picsum.photos/id/1035/300/300" />
+        <p>My Love</p>
       </div>
     </div>
+  </div>
 
     <!-- 🔐 Vault Slide -->
     <div class="section" id="vaultSlide">
@@ -375,7 +534,7 @@
 
     <!-- 🎤 Voice to Text Magic -->
     <div class="section">
-      <p style="font-size: 1.4rem;">🎤 Speak something sweet</p>
+      <p style="font-size: 1.4rem;">🎤 Say Three Magical Words😘</p>
       <button onclick="startVoice()" style="margin-top:1rem;">🎙️ Start Listening</button>
       <p id="voiceResult" style="margin-top: 1rem; font-style:italic;"></p>
     </div>
@@ -587,7 +746,7 @@
     const input = document.getElementById("vaultInput").value;
     const error = document.getElementById("vaultError");
     const gallery = document.getElementById("vaultGallery");
-    if (input === "555") {
+    if (input === "3107") {
       error.style.display = "none";
       gallery.style.display = "block";
     } else {
