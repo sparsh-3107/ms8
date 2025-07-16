@@ -773,30 +773,25 @@ function spawnShootingStar() {
 }
 setInterval(spawnShootingStar, 7000); // Dark mode only
     // Voice message play/pause logic
-    const voiceBtn = document.getElementById("voiceBtn");
-const voiceMsg = document.getElementById("voiceMsg");
-const bgMusic = document.getElementById("bgMusic");
+    voiceBtn.addEventListener("click", () => {
+      if (voiceMsg.paused) {
+        voiceMsg.play();
+        bgMusic.pause();
+        voiceBtn.textContent = "⏸️ Pause Voice Message";
+        voiceBtn.setAttribute("aria-pressed", "true");
+      } else {
+        voiceMsg.pause();
+        bgMusic.play();
+        voiceBtn.textContent = "▶️ Play Voice Message";
+        voiceBtn.setAttribute("aria-pressed", "false");
+      }
+    });
 
-voiceBtn.addEventListener("click", () => {
-  if (voiceMsg.paused) {
-    voiceMsg.play();
-    bgMusic.pause();
-    voiceBtn.textContent = "⏸️ Pause Voice Message";
-    voiceBtn.setAttribute("aria-pressed", "true");
-  } else {
-    voiceMsg.pause();
-    bgMusic.play();
-    voiceBtn.textContent = "▶️ Play Voice Message";
-    voiceBtn.setAttribute("aria-pressed", "false");
-  }
-});
-
-voiceMsg.addEventListener("ended", () => {
-  bgMusic.play();
-  voiceBtn.textContent = "▶️ Play Voice Message";
-  voiceBtn.setAttribute("aria-pressed", "false");
-});
-
+    voiceMsg.addEventListener("ended", () => {
+      bgMusic.play();
+      voiceBtn.textContent = "▶️ Play Voice Message";
+      voiceBtn.setAttribute("aria-pressed", "false");
+    });
    
 
 setInterval(spawnHeart, 1000);
@@ -860,7 +855,7 @@ function startVoice() {
       }
     });
  // 💘 Why I Love You Button Logic
-   const loveBtn = document.getElementById("whyLoveBtn");
+    const loveBtn = document.getElementById("whyLoveBtn");
 const reasonText = document.getElementById("reasonText");
 
 const reasons = [
